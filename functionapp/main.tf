@@ -84,8 +84,7 @@ resource "azurerm_function_app" "funcapp" {
   client_affinity_enabled   = var.client_affinity_enabled
   version                   = var.func_version
   app_settings              = {
-     FUNCTIONS_WORKER_RUNTIME = var.function_worker_runtime
-     WEBSITE_RUN_FROM_ZIP     = "https://${azurerm_storage_account.funcapp.name}.blob.core.windows.net/function-releases/functionapp.zip"
-     WEBSITE_CONTENTAZUREFILECONNECTIONSTRING = "https://${azurerm_storage_account.funcapp.name}.blob.core.windows.net/${azurerm_storage_container.funcapp.name}/${azurerm_storage_blob.funcapp.name}${data.azurerm_storage_account_sas.funcapp.sas}"
+     WEBSITE_RUN_FROM_PACKAGE   = "https://${azurerm_storage_account.funcapp.name}.blob.core.windows.net/${azurerm_storage_container.funcapp.name}/${azurerm_storage_blob.funcapp.name}${data.azurerm_storage_account_sas.funcapp.sas}"
   }
+
 }
